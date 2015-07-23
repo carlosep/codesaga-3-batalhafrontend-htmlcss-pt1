@@ -5,10 +5,11 @@ $(document).ready(function() {
     var p = getText("p");
     var errors = new Array();
 
-    verify(strcmp("Meu Currículo", title), "The tag \'title\' is missing or wrong.", errors);
+    verify(strcmp("Meu Currículo", title), "The \'title\' should be \'Meu Currículo\'.", errors);
     verify(h1.length == 0, "The tag 'h1' is missing or empty.", errors);
     verify(p.length == 0, "You must write at least one paragraph.", errors);
 
     showMessage(errors);
+
   });
 });
