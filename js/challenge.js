@@ -1,27 +1,18 @@
 $(document).ready(function() {
   $('#solution').load(function() {
     var title = $("#solution").contents().find("title").text();
-    console.log(title);
     var h1 = $("#solution").contents().find("h1").text();
-    console.log(h1);
     var p = $("#solution").contents().find("p").text();
-    console.log(p);
     var errors = new Array();
 
-    if (strcmp("Meu Currículo", title) != 0) {
-      errors.push("The tag \'title\' is missing or wrong.")
-    } 
-    
-    if (h1.length == 0) {
-      errors.push("The tag 'h1' is missing or empty.")
-    }
-    if (p.length == 0) {
-      errors.push("You must write at least one paragraph.")
-    }
+    verify(strcmp("Meu Currículo", title), "The tag \'title\' is missing or wrong.", errors);
+    verify(h1.length == 0, "The tag 'h1' is missing or empty.", errors);
+    verify(p.length == 0, "You must write at least one paragraph.", errors);
+
     var result = $("#result");
     if (errors.length == 0){
       result.addClass("alert-success");
-      result.append("Success. You are ready to the next challenge.")
+      result.append("Success. You are ready to the next challenge.");
     }
     else {
       result.addClass("alert-danger");
@@ -31,7 +22,12 @@ $(document).ready(function() {
   });
 });
 
-function strcmp(a, b)
-{   
-    return (a<b?-1:(a>b?1:0));  
+function verify(expr, message, errors) {
+  if(expr) {
+    errors.push(message);
+  }
+}
+
+function strcmp(a, b) {
+  return (a<b?-1:(a>b?1:0));
 }
