@@ -12,7 +12,7 @@ function showMessage(errors) {
 }
 
 function getText(elem) {
-  return $("#solution").contents().find("title").text();
+  return $("#solution").contents().find(elem).text();
 }
 
 function verify(expr, message, errors) {
